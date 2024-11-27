@@ -49,20 +49,17 @@ const StoreContextProvider = (props) => {
 
   const fetchFoodList = async () => {
     const response = await axios.get(url + "/api/food/list");
-    console.log("response", response);
-    console.log("response.data ", response.data);
 
-    console.log("response.data.data", response.data.data);
+    console.log("food list", response.data.data);
 
     setFoodList(response.data.data);
   };
 
   const loadCartData = async (token) => {
-    const response = await axios.post(
-      url + "/api/cart/get",
-      {},
-      { headers: { token } }
-    );
+    const response = await axios.get(url + "/api/cart/get", {
+      headers: { token },
+    });
+    console.log("response.data.cartData", response.data.cartData);
     setCartItems(response.data.cartData);
   };
 
